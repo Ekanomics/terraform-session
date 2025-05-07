@@ -1,19 +1,15 @@
 resource "aws_instance" "first_ec2" {
-  ami           = "ami-07b0c09aab6e66ee9" 
+  count = 5 # MetaArgument
+  ami           = data.aws_ami.amazon_linux_2023.id 
   instance_type = var.instance_type
   vpc_security_group_ids = [aws_security_group.my-terraform-webserver-sg.id]
   tags = {
     Name        = format("%s-instance", var.env)                  # i want name will be changed like: dev-instance, qa-instance, stage-instance, prod-instance..
     Environment = var.env
   }
-  user_data = <<-EOF
-              #!/bin/bash
-              dnf install -y httpd
-              systemctl enable httpd
-              systemctl start httpd
-              echo "<html><body><h1>Session-2 homework is complete! </h1></body></html>" > /var/www/html/index.html
-              EOF
+  user_data = templatefile("userdata.sh", { environment = var.env })
 }
+
 
 # Reference to Resource
 # Syntax: first_label.second_label.attribute
@@ -21,6 +17,10 @@ resource "aws_instance" "first_ec2" {
 # Reference to Input Variable
 # Syntax: var.variable_name
 # Example: var.instance_type
+
+# Reference to Data Source:
+# Syntax: data.first_label.second_label.attribute
+# Example: data.aws_ami.amazon_linux_2023.id 
 
 resource "aws_security_group" "my-terraform-webserver-sg" {
   name = "my-terraform-webserver-sg"
