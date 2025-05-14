@@ -67,3 +67,14 @@ module "vpc" {
     Environment = "dev"
   }
 }
+
+
+
+module "erkin_github_sg" {
+  source = "github.com/Ekanomics/terraform-session/modules/sg"
+  name = "erkin-sg"
+  description = "This a sg for dev instance"
+  ingress_ports = [ 22 ]
+  ingress_cidr = [ "10.0.0.0/32" ]
+}
+
