@@ -24,12 +24,47 @@ variable "private_subnet_cidrs" {
 }
 
 
-
-
-
 variable "env" {
     description = "Environment: dev, qa, stage, prod"
     type = string
     default = "dev"
+}
+
+variable "instance_type" {
+    description = "instance type"
+    type = string
+    default = "t2.micro"
+}
+
+
+variable "domain_name" {
+    description = "domain name"
+    type = string
+    default = "rundevous.com"
+}
+
+variable "owner" {
+    description = "Owner of the project"
+    type = string
+    default = "erkin"
+}
+
+variable "managed_by" {
+    description = "Managed by"
+    type = string
+    default = "terraform"
+}
+
+variable "provider_name" {
+    description = "provider name"
+    type = string
+    default = "aws"
+}
+
+
+variable "hosted_zone_id" {
+    description = "The ID of the Route 53 hosted zone"
+    type =string
+    default = "Z00463341WOWJM6XVVSDP"
 }
 

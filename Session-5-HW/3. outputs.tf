@@ -16,6 +16,15 @@ output "private_subnet_ids" {
 }
 
 
+output "alb_dns_name" {
+    description = "DNS name of the Application Load Balancer"
+    value = aws_lb.app_lb.dns_name
+}
+
+output "amazon_linux_ami_id" {
+  value = data.aws_ami.amazon_linux.id
+}
+
 
 
 # output "internet_gateway_id" {
