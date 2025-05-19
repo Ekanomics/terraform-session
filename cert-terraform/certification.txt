@@ -1,0 +1,90 @@
+# ________________________ Standard Terraform Commands
+
+# terraform init  -         Initialize a working directory
+# terraform validate -      Check syntax and config validity
+# Terraform plan -          Preview changes before applying
+# terraform apply -         Execute the plan and create/update infra
+# terraform destroy -       Tear down infra 
+# terraform fmt -           Format your terrafrom code
+# terraform providers -     List providers required for the config
+
+# _____________Workflow
+#       write code -->  init --> Plan --> Apply --> Manage (via stage, change destroy)
+
+
+# _____________Non Standard Commands
+# terraform import -        Bring existing infra under Terraform control
+# terraform taint/untaint - Mark resources for recreation
+# terraform state -         View or modify state files manually
+# terraform graph -         Vizualize dependancy graph
+# terraform output -        View output values
+
+# Providers -                   Define how Terraform interacts with external APIs (e.g., AWS, Azure, GCP).
+
+# Modules -                     Reusable blocks of terraform configs (local, remote(git, registry), published modules)
+
+# State and Backend config -    terraform.tfstate tracks deployed resources; Backends store state remotely(S3, terraform Cloud), state locking.. 
+
+# IaC -                         Declarative vs. imperative
+#                               Benefits of IaC: consistency, automation, repeatability
+
+# Provisioners -                Used to execute scripts on a local or remote machine. Types: local-exec, remote-exec
+
+# Cloud Free, Team, and Enterprise editions.
+
+# Variables and Outputs
+# Input variables (variable blocks): default values, type constraints
+# Output values (output blocks): used to pass info between modules or to CLI
+# Sensitive values handling (sensitive = true)
+
+
+# Secrets Management -          Avoid hardcoding sensitive values. Use environment variables, terraform.tfvars, .auto.tfvars
+
+# Data Structures and Types -   string, number, bool, list, map, object, tuple, set
+
+# Data Sources -                Read-only views of existing infrastructure (outside Terraform's control).
+
+# Resource Addressing -         Each resource has a unique address: aws_instance.example ; Addressing modules: module.web.aws_instance.example
+
+# Functions -                   Built-in functions: length(), join(), lookup(), file(), format(), merge(), toset(), etc.
+
+# Dynamic Blocks -              Useful for conditionally generating nested blocks. Syntax: dynamic "block_name" { for_each = ..., content { ... } }
+
+# Dependency Management
+#                               Implicit (based on references): aws_instance depends on aws_security_group
+#                               Explicit: Using depends_on = [...]
+
+
+# Workspaces -                  Isolate environments (e.g., dev, prod)
+
+
+
+
+
+# ______________________________Quizes
+Manage and provision cloud infrastructure
+
+Hashicorp Configuration language (HCL) - recommended language for writing terraform configs
+
+Terraform - IaC tool
+
+Which language does terraform configuration support from the below list - HCL and JSON
+
+Terraform plugin - Terraform provider
+
+Terraform Core is a statically-compiled written in the ___ programming language -      Go 
+
+How can terraform plan aid in the development process -         Validates your expectations against the execution plan without permanently modifying state
+
+When you Initialize terrafrom, where does it cache modules from the public Terraform Module registry -      On disk in the .terraform sub-directory
+
+Terraform needs to install the necessary plugins first -    when i run apply it will fail, why?
+
+init not perform -  Validates all required VARIABLES are present
+
+terraform init intializes a sample main.tf file in the current directory - FALSE
+
+A provider configuration block is required in every Terraform configuration -   FALSE
+
+In the terrafrom block, which configuration would be used to identify the specific version of a provider required -     "required-providers"
+
