@@ -18,6 +18,36 @@ module "vpc" {
 }
 
 
+module "alb" {
+  source = "../modules/alb"
+
+  vpc_id              = module.vpc.vpc_id
+  public_subnet_ids   = module.vpc.public_subnet_ids
+}
+
+
+module "asg" {
+  source = "../modules/asg"
+
+  vpc_id              = module.vpc.vpc_id
+  private_subnet_ids  = module.vpc.private_subnet_ids
+  target_group_arn    = module.alb.target_group_arn
+  alb_sg_id           = module.alb.sg_id
+}
+
+
+module "acm_route53" {
+  source = "../modules/acm_route53"
+
+  domain_name   = var.domain_name
+  hosted_zone_id = var.hosted_zone_id
+  alb_dns_name = module.alb.dns_name
+  alb_zone_id  = module.alb.zone_id
+}
+
+
+
+
 
 # module "vpc" {
 #   source              = "./modules/vpc"

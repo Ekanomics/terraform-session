@@ -1,26 +1,18 @@
-variable "vpc_cidr" {
-    description = "VPC CIDR"
-    type = string
-    default = "10.0.0.0/16"
+variable "vpc_id" {}
+
+
+variable "private_subnet_ids" {
+  type = list(string)
 }
 
 
-variable "public_subnet_cidrs" {
-    description = "public subnet cidrs"
-    type = list(string)
-    default = ["10.0.0.0/24", "10.0.1.0/24", "10.0.2.0/24"]  
-}
+variable "alb_sg_id" {}
 
 
-variable "private_subnet_cidrs" {
-    description = "private subnet cidrs"
-    type = list(string)
-    default = [ "10.0.3.0/24", "10.0.4.0/24", "10.0.5.0/24" ]  
-}
+variable "target_group_arn" {}
 
 
-variable "AZ" {
-    description = "Availability Zones"
-    type = list(string)                                   
-    default = ["us-west-2a", "us-west-2b", "us-west-2c"]
+variable "ami_id" {
+  description = "Amazon Linux 2 AMI"
+  default     = "ami-0c2b8ca1dad447f8a" # update with latest for your region
 }

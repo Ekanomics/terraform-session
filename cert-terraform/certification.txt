@@ -88,3 +88,110 @@ A provider configuration block is required in every Terraform configuration -   
 
 In the terrafrom block, which configuration would be used to identify the specific version of a provider required -     "required-providers"
 
+Terraform variables and outputs that set the "description" argument will store that description in the state file -     FALSE
+
+where does the Terraform local backaned store its state -   In the terraform.tfstate file
+
+
+
+data "aws_ami" "ubuntu" {
+    ...
+}
+
+resource "aws_instance" "main" {
+    ami = ________________________
+    instance_type = "t2.micro"
+
+    tags = {
+        Name = "helloworld"
+    }
+}
+
+What value should you enter for the ami argument in the AWS instance resource -     data.aws_ami.ubuntu.id 
+
+
+
+Where in your Terraform configuration do you specify a state Backend -      the terraform block
+
+
+Some secrets stored in a plaintext in state files, how to protect sensitive data stored in Terraform state files? -     
+        Store the state in an encrypted Backend
+
+
+All standard backend types support state storage, locking, and remote operations like plan, apply and destroy. -    FALSE
+
+
+In order to make a Terraform configuration file dynamic and/or reusable, static values should be converted to use what? -   "input variables"
+
+
+What resource meta-parameter can you use to make sure Terraform respects the dependency? -      depends_on
+
+
+The following list represents the different types of __________ available in Terraform. max min join replace length range -     functions
+
+
+You have multiple team members collaborating on infrastructure as code (IaC) using Terraform, and want to apply formatting standards for readability. How can you format Terraform HCL (HashiCorp Configuration Language) code according to standard Terraform style convention?
+    Run the terraform fmt command during the code linting phase of your CI/CD process
+
+
+Where in your Terraform configuration do you specify a state backend? -     Terraform block
+
+
+What is not processed when running a terraform refresh? -   Configuration file
+
+
+What is one disadvantage of using dynamic blocks in Terraform? -     They make configuration harder to read and understand
+
+
+terraform fmt -     rewrite terraform configuration files to a canonical format ans style
+
+
+Stephen is writing brand new code and needs to ensure it is syntactically valid and internally consistent. Stephen doesn't want to wait for Terraform to access any remote services while making sure his code is valid. What command can he use to accomplish this? - 
+    terraform validate
+
+
+What information does the public Terraform Module Registry automatically expose about published modules? -  
+    Required input variables
+    Optional inputs variables and default values
+    Outputs
+
+
+When should you use the force-unlock command? -     Automatic unlocking failed
+
+
+terraform taint aws_instance.my_ec2 -    it will be destroyed and recreated during the next terraform apply
+
+
+terraform untaint <resource_address>
+
+
+
+terraform state list -      To see all resources and their addresses:
+
+
+
+Which of the following is available only in Terraform Enterprise or Cloud workspaces and not in Terraform CLI? -    
+    Secure variable storage
+    Run tasks (Allows you to integrate third-party tools (like security scanners, compliance checkers) into the run lifecycle (before apply, after plan, etc.).)
+
+
+
+init not perform -      Validates all required variables are present
+
+
+A provider configuration block is required in every Terraform configuration. -      FALSE
+
+
+Terraform by default provisions 10 resources concurrently during a `terraform apply` command to speed up the provisioning process and reduce the overall time taken.
+
+
+
+Where does Terraform Community (Free) store the local state for workspaces? -   
+    directory called terraform.tfstate.d/<workspace name>
+
+
+
+Terraform is an immutable, declarative, Infrastructure as Code provisioning language based on Hashicorp Configuration Language, or optionally JSON.
+
+
+
