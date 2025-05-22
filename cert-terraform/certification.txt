@@ -195,3 +195,212 @@ Terraform is an immutable, declarative, Infrastructure as Code provisioning lang
 
 
 
+
+______________________________
+
+1.  Published modules via the Terraform registry -      Support from any code repo (is not a benefit, because they are primarily facilitaed through
+the terraform Registry platform, where users can contribute, report issues and engage with the module maintainers on GitHub only)
+
+
+2.  terraform provider - plugin
+
+In Terraform, a plugin is a binary executable that implements a specific provider. 
+A provider is a plugin that allows Terraform to manage a specific cloud provider or service.
+
+
+3.  No need to use CLI to switch between workspaces when using HCP Terraform workspaces. You can use their own web interface
+
+
+4. Terraform validate -     used to check whether the config files are syntactically valid and internally consistent without accessing any reomte services
+    Quick way to ensure that the code us correct before attempting to apply
+
+
+5. terraform apply -refresh-only
+The 'terraform apply -refresh-only' command is used to apply changes to the infrastructure while only refreshing the state without making any actual changes. 
+It does not perform a validation check on the code to ensure its syntactic validity and internal consistency.
+
+
+6. HCP Terraform can be managed fro the CLI by using an API token.
+API token serves as a secure way to authenticate and authorize CLI access to HCP terraform resources and operations
+
+
+7. A TOTP (Time-based One-Time Password) - are typically used for two-factor authentication but are unnecessary for CLI access to HCP Terraform.
+
+
+8. What is the downside to using Terraform to interact with sensitive data, such as reading secrets from Vault?
+    -   secrets are persisted to the state file (Using Terraform to interact with sensitive data like secrets from Vault can lead to the 
+    secrets being persisted to the state file. This poses a security risk as the state file may contain sensitive information that could 
+    be exposed if not properly managed or secured.)
+
+
+9. Which Terraform command will force a resource to be destroyed and recreated even if there are no configuration changes that would require it?
+    - terraform apply -replace=<address>
+
+
+10. Which of the following actions are performed during a terraform init?
+    -   initializes the backend configuration
+    -   downloads the required modules referenced in the configuration
+    -   downloads the providers/plugins required to execute the configuration
+
+
+11. After executing a terraform plan, you notice that a resource has a tilde (~) next to it. What does this mean?
+    -   the resource will be updated in place
+
+
+12. terraform state features:
+    - increased prfoermance
+    - mappping config to real-world resources
+    - determining the correct order to destroy resources
+
+Terraform state is used for tracking the state of managed infra resources and managing their config, but it does not provide direct inspection 
+capabilities for cloud resources
+
+
+
+13. In HCP Terraform, a workspace can be mapped to how many VCS repos? 
+    -   1 (workspace in HCP Terraform can be mapped to only oe VCS (Version Control System) repo)
+
+
+14. Applying variables to all workspaces across multiple HCP Terraform organizations is not a valid scope for variables in HCP Terraform. 
+Variables are typically scoped within a project or workspace to maintain organization and control over configuration settings.
+
+
+15. terraform show
+    - The 'terraform show' command is used to inspect the current state file in Terraform. 
+    It displays the current state as Terraform sees it, including resource attributes and dependencies.
+
+
+16. terraform version -     command is used to display currently installed version of Terraform on your System
+
+
+17. Sentinel -  is a policy as code framework that allows users to define and enforce policies for Terraform configs
+
+
+18. Terraform console -     provides an interactive command-line console for evaluating and experimenting with expressions
+
+
+19. You want to start managing resources that were not originally provisioned through infrastructure as code. 
+Before you can import the resource's current state, what must you do before running the terraform import command?
+
+    -   update the Terraform configuration file to include the new resources that match the resources you want to import
+
+
+20. State locking is a critical feature of remote state storage that prevents multiple engineers from deploying infrastructure using 
+the same state file simultaneously. It ensures that only one engineer can make changes to the state at a time, preventing conflicts 
+and potential corruption of the state file.
+
+
+______________________________
+
+1.  What is the primary function of HCP Terraform agents? -     
+    -   execute Terraform plans and apply changes to infrastructure
+
+HCP Terraform agents are lightweight programs deployed within your target infrastructure environment. Their primary function is to receive 
+Terraform plans from HCP Terraform, execute those plans locally, and apply the desired infrastructure changes. 
+This allows you to manage private or on-premises infrastructure with HCP Terraform without opening your network to public ingress traffic.
+
+
+2.  Infrastructure as Code (IaC) makes infra changes:
+    predictable
+    repeatable
+    consistent
+    idempotent
+
+
+3.  Terraform has detailed logs that can be enabled using the TF_LOG environment variable. Which of the following log levels is the most verbose, 
+meaning it will log the most specific logs?
+
+    The TRACE log level in Terraform is the most verbose level, providing the most detailed and specific logs. It logs every action taken by 
+    Terraform, including individual resource creation, updates, and deletions, making it ideal for troubleshooting and debugging complex issues.
+
+
+4.  terraform destroy -auto-approve
+    -   command is used in Terraform to automatically destroy all the resources defined in your configuration without requiring 
+    manual confirmation for each deletion.
+
+
+5.  You are deploying a new application and want to deploy it to multiple AWS regions within the same configuration file. 
+Which of the following features will allow you to configure this?
+
+-   multiple provider blocks using an alias
+
+
+6. terraform destroy -target=azurerm_resource_group.production
+
+    You can use the -target option to destroy a particular resource and its dependencies:
+
+
+7. Rigby is implementing Terraform and was given a configuration that includes the snippet below. Where is this particular module stored?
+
+module "consul" {
+  source  = "hashicorp/consul/aws"
+  version = "0.1.0"
+}
+
+public Terraform registry - The source "hashicorp/consul/aws" in the module configuration indicates that the module is stored in the public Terraform registry
+
+
+
+______________________________
+
+
+
+1. Which of the following tasks does terraform init perform?
+    - caches the source code locally for referenced modules
+    - prepares the working directory for use with Terraform
+    - downloads required providers used in your configuration file
+
+
+2. Which of the following is the best description of a dynamic block?
+ -      produces nested configuration blocks instead of a complex typed value
+
+
+3. each.value.ip 
+
+
+4. terraform console
+    -   The 'terraform console' command allows you to interactively evaluate and
+     experiment with expressions in your Terraform configuration. 
+     It provides a way to test and validate the output of expressions before applying them to your infrastructure.
+
+
+5. When using HCP Terraform, committing code to your version control system (VCS) can automatically trigger a speculative 
+plan on a workspace connected to the VCS.
+
+    -   True. This allows you to see the potential changes that Terraform will make before actually applying them, 
+    helping you understand the impact of your code changes.
+
+
+6. the resource address (example: aws_instance.web) and resource ID (example: i-abdcef12345) must be provided when importing a resource
+
+
+7. terraform init -migrate-state
+    -   correct command to migrate the state file to the new Amazon S3 remote backend. This command initializes the backend 
+        configuration and migrates the existing state to the specified backend.
+
+
+8. What block would properly configure Terraform to ensure it always installs the same Azure provider version?
+
+terraform {
+  required_providers {
+    azurerm = {
+      source = "hashicorp/azurerm"
+      version = "2.90.0"
+    }
+  }
+}
+
+
+
+9. Running a `terraform fmt` command will only format the Terraform configuration files in the current working directory, not in all subdirectories
+
+
+10. terraform plan -out=thomas
+    -   Running 'terraform plan -out=thomas' allows Thomas to perform a dry run of the Terraform configuration. This command generates an execution
+        plan showing what actions Terraform will take when applying the configuration, without actually deploying any real-world resources. 
+        The '-out' flag saves the plan to a file for later use.
+
+
+11. terraform state list
+    -   Running 'terraform state list' does not cause Terraform to refresh its state. This command simply lists the resources in the state file 
+        without making any changes to the infrastructure. It is a read-only operation and does not trigger a state refresh.
